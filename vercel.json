@@ -4,6 +4,17 @@
   "buildCommand": "npm run build -- --base=/",
   "outputDirectory": "dist",
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://phone-shop-backend-9mdp.onrender.com/api/:path*" },
+    { "source": "/media/:path*", "destination": "https://phone-shop-backend-9mdp.onrender.com/media/:path*" },
     { "source": "/((?!api(?:/|$)|media(?:/|$)).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "private, no-store" },
+        { "key": "x-vercel-enable-rewrite-caching", "value": "0" }
+      ]
+    }
   ]
 }
